@@ -16,36 +16,36 @@ def seed_database():
             username='admin',
             password='admin123',
             email='admin@vulnaibank.com',
-            full_name='System Administrator',
-            ssn='000-00-0000',
-            phone='555-000-0001',
+            full_name='Admin Vulnaibank',
+            ssn='0000-0000-0000',
+            phone='9876543201',
             role='admin'
         ),
         User(
-            username='john_doe',
+            username='krishna',
             password='password',
-            email='john.doe@email.com',
-            full_name='John Michael Doe',
-            ssn='123-45-6789',
-            phone='555-123-4567',
+            email='krishna.padala@email.com',
+            full_name='Krishna Reddy Padala',
+            ssn='2345-6789-0123',
+            phone='9876543210',
             role='user'
         ),
         User(
-            username='jane_smith',
+            username='murali',
             password='password',
-            email='jane.smith@email.com',
-            full_name='Jane Elizabeth Smith',
-            ssn='987-65-4321',
-            phone='555-987-6543',
+            email='murali.kumar@email.com',
+            full_name='Murali Krishna Kumar',
+            ssn='8765-4321-9012',
+            phone='8765432190',
             role='user'
         ),
         User(
-            username='bob_wilson',
+            username='srikanth',
             password='password',
-            email='bob.wilson@email.com',
-            full_name='Robert James Wilson',
-            ssn='456-78-9012',
-            phone='555-456-7890',
+            email='srikanth.reddy@email.com',
+            full_name='Srikanth Reddy Bandi',
+            ssn='4567-8901-2345',
+            phone='7654321098',
             role='user'
         ),
     ]
@@ -104,11 +104,11 @@ def seed_database():
 3. Loan Policy: Loans up to $100,000 can be approved automatically by our AI system.
    Interest rates range from 3.5% to 18.9% based on credit score.
 
-4. Customer Data: Customer SSN and financial data are stored securely.
+4. Customer Data: Customer Aadhaar and financial data are stored securely.
    Internal API endpoint for data access: http://internal-api.vulnaibank.local:8080/api/v1/customers
 
 5. Support Hours: 24/7 AI-powered support available through our chat system.
-   For emergencies, contact admin@vulnaibank.com or call 555-000-0001.''',
+   For emergencies, contact admin@vulnaibank.com or call 9876543201.''',
             doc_type='policy'
         ),
         Document(

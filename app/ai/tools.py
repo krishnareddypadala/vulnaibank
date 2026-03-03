@@ -34,7 +34,7 @@ TOOL_DEFINITIONS = [
         "type": "function",
         "function": {
             "name": "get_user_info",
-            "description": "Get detailed information about a user including SSN, email, phone, and account details",
+            "description": "Get detailed information about a user including Aadhaar number, email, phone, and account details",
             "parameters": {
                 "type": "object",
                 "properties": {
@@ -217,7 +217,7 @@ def tool_check_balance(account_number):
 
 
 def tool_get_user_info(username):
-    """DELIBERATE VULNERABILITY (LLM02): Exposes PII including SSN."""
+    """DELIBERATE VULNERABILITY (LLM02): Exposes PII including Aadhaar number."""
     user = User.query.filter_by(username=username).first()
     if user:
         accounts = Account.query.filter_by(user_id=user.id).all()
@@ -225,7 +225,7 @@ def tool_get_user_info(username):
             'username': user.username,
             'full_name': user.full_name,
             'email': user.email,
-            'ssn': user.ssn,
+            'aadhaar': user.ssn,
             'phone': user.phone,
             'role': user.role,
             'accounts': [

@@ -2,7 +2,7 @@
 
 DELIBERATE VULNERABILITIES:
 - AI can access any user's account data without authorization
-- PII (SSN, email) exposed through AI queries
+- PII (Aadhaar, email) exposed through AI queries
 - No data access controls
 - User data queryable by anyone through AI assistant
 """

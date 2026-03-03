@@ -331,7 +331,7 @@ async function searchAccounts() {
         const data = await response.json();
 
         if (data.results) {
-            let html = '<table><thead><tr><th>Username</th><th>Full Name</th><th>Email</th><th>SSN</th><th>Account</th><th>Balance</th></tr></thead><tbody>';
+            let html = '<table><thead><tr><th>Username</th><th>Full Name</th><th>Email</th><th>Aadhaar</th><th>Account</th><th>Balance</th></tr></thead><tbody>';
             data.results.forEach(row => {
                 html += `<tr><td>${row.username}</td><td>${row.full_name}</td><td>${row.email}</td><td>${row.ssn}</td><td>${row.account_number}</td><td>$${row.balance}</td></tr>`;
             });
