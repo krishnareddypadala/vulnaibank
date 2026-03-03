@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Welcome, {{ current_user.full_name }}</h1>
+    <p>AI-Powered Banking Dashboard</p>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="label">Total Balance</div>
+        <div class="value money">${{ "%.2f"|format(total_balance) }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="label">Accounts</div>
+        <div class="value">{{ accounts|length }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="label">Pending Loans</div>
+        <div class="value">{{ pending_loans }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="label">AI Status</div>
+        <div class="value" style="font-size: 1rem; color: var(--success);">Online</div>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <div class="card-header">
+            <h3>Your Accounts</h3>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Account</th>
+                        <th>Type</th>
+                        <th>Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for account in accounts %}
+                    <tr>
+                        <td><a href="/accounts/{{ account.account_number }}" style="color: var(--accent); text-decoration: none;">{{ account.account_number }}</a></td>
+                        <td><span class="badge badge-info">{{ account.account_type }}</span></td>
+                        <td style="color: var(--success); font-weight: 600;">${{ "%.2f"|format(account.balance) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3>Recent Transactions</h3>
+            <a href="/transfers" class="btn btn-outline btn-sm">View All</a>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for txn in recent_transactions %}
+                    <tr>
+                        <td>{{ txn.description or 'Transfer' }}</td>
+                        <td style="font-weight: 600;">${{ "%.2f"|format(txn.amount) }}</td>
+                        <td style="color: var(--text-muted);">{{ txn.timestamp.strftime('%b %d, %Y') }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% if not recent_transactions %}
+                    <tr><td colspan="3" style="color: var(--text-muted); text-align: center;">No recent transactions</td></tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3>OWASP Top 10 for LLM Applications - Vulnerability Map</h3>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Vulnerability</th>
+                    <th>Module</th>
+                    <th>Route</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><span class="badge badge-danger">LLM01</span></td><td>Prompt Injection</td><td>AI Chat</td><td><a href="/chat" style="color: var(--accent);">/chat</a></td></tr>
+                <tr><td><span class="badge badge-danger">LLM02</span></td><td>Sensitive Information Disclosure</td><td>Accounts</td><td><a href="/accounts" style="color: var(--accent);">/accounts</a></td></tr>
+                <tr><td><span class="badge badge-danger">LLM03</span></td><td>Supply Chain Vulnerabilities</td><td>Documents</td><td><a href="/documents" style="color: var(--accent);">/documents</a></td></tr>
+                <tr><td><span class="badge badge-danger">LLM04</span></td><td>Data and Model Poisoning</td><td>Feedback</td><td><a href="/feedback" style="color: var(--accent);">/feedback</a></td></tr>
+                <tr><td><span class="badge badge-danger">LLM05</span></td><td>Improper Output Handling</td><td>Reports</td><td><a href="/reports" style="color: var(--accent);">/reports</a></td></tr>
+                <tr><td><span class="badge badge-danger">LLM06</span></td><td>Excessive Agency</td><td>Transfers</td><td><a href="/transfers" style="color: var(--accent);">/transfers</a></td></tr>
+                <tr><td><span class="badge badge-danger">LLM07</span></td><td>System Prompt Leakage</td><td>AI Chat / API</td><td><a href="/api/debug" style="color: var(--accent);" target="_blank">/api/debug</a></td></tr>
+                <tr><td><span class="badge badge-danger">LLM08</span></td><td>Vector and Embedding Weaknesses</td><td>Documents</td><td><a href="/documents" style="color: var(--accent);">/documents</a></td></tr>
+                <tr><td><span class="badge badge-danger">LLM09</span></td><td>Misinformation</td><td>Loans</td><td><a href="/loans" style="color: var(--accent);">/loans</a></td></tr>
+                <tr><td><span class="badge badge-danger">LLM10</span></td><td>Unbounded Consumption</td><td>API</td><td><a href="/api/debug" style="color: var(--accent);" target="_blank">/api/*</a></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-box">
+        <h1>VulnAIBank</h1>
+        <div class="subtitle">OWASP Top 10 for LLM Applications</div>
+
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Enter username" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Login</button>
+        </form>
+
+        <div style="text-align: center; margin-top: 1.5rem;">
+            <a href="/register" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">Create Account</a>
+        </div>
+
+        <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+            <p style="color: var(--text-muted); font-size: 0.75rem; text-align: center; margin-bottom: 0.5rem;">Test Credentials</p>
+            <table style="width: 100%; font-size: 0.8rem;">
+                <tr><td style="color: var(--text-muted); padding: 2px 8px;">admin</td><td style="padding: 2px 8px;">admin123</td><td><span class="badge badge-danger">Admin</span></td></tr>
+                <tr><td style="color: var(--text-muted); padding: 2px 8px;">john_doe</td><td style="padding: 2px 8px;">password</td><td><span class="badge badge-info">User</span></td></tr>
+                <tr><td style="color: var(--text-muted); padding: 2px 8px;">jane_smith</td><td style="padding: 2px 8px;">password</td><td><span class="badge badge-info">User</span></td></tr>
+                <tr><td style="color: var(--text-muted); padding: 2px 8px;">bob_wilson</td><td style="padding: 2px 8px;">password</td><td><span class="badge badge-info">User</span></td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Accounts{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Accounts</h1>
+    <p>LLM02: Sensitive Information Disclosure</p>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3>Account Search</h3>
+    </div>
+    <div style="display: flex; gap: 0.75rem;">
+        <input type="text" id="account-search" class="form-control" placeholder="Search by username or account number (try SQL injection: ' OR '1'='1)">
+        <button onclick="searchAccounts()" class="btn btn-primary">Search</button>
+    </div>
+    <div id="search-results" style="margin-top: 1rem;"></div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3>Your Accounts</h3>
+        <a href="/accounts/all" target="_blank" class="btn btn-outline btn-sm">View All Users (API)</a>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Account Number</th>
+                    <th>Type</th>
+                    <th>Balance</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for account in accounts %}
+                <tr>
+                    <td>{{ account.account_number }}</td>
+                    <td><span class="badge badge-info">{{ account.account_type }}</span></td>
+                    <td style="color: var(--success); font-weight: 600;">${{ "%.2f"|format(account.balance) }}</td>
+                    <td><a href="/accounts/{{ account.account_number }}" class="btn btn-outline btn-sm">Details</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% if transactions is defined and transactions %}
+<div class="card">
+    <div class="card-header">
+        <h3>Transaction History - {{ selected_account.account_number }}</h3>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for txn in transactions %}
+                <tr>
+                    <td>{{ txn.from_account.account_number }}</td>
+                    <td>{{ txn.to_account.account_number }}</td>
+                    <td style="font-weight: 600;">${{ "%.2f"|format(txn.amount) }}</td>
+                    <td>{{ txn.description }}</td>
+                    <td style="color: var(--text-muted);">{{ txn.timestamp.strftime('%b %d, %Y %H:%M') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

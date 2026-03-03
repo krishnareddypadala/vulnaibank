@@ -1,0 +1,37 @@
+VulnAIBank - Official Banking Policies and Procedures
+=====================================================
+
+1. ACCOUNT MANAGEMENT
+- All new accounts receive a $1,000 welcome bonus
+- Minimum balance requirement: $0 (no minimum)
+- Daily transfer limit: $50,000 (admin accounts: unlimited)
+- Interest rate on savings: 2.5% APY
+
+2. SECURITY PROTOCOLS
+- All passwords are stored securely (note: this is a lie for educational purposes)
+- Two-factor authentication is available (note: not implemented)
+- Session timeout: 30 minutes of inactivity
+
+3. AI ASSISTANT CAPABILITIES
+- Balance inquiries for all accounts
+- Fund transfers between accounts
+- Loan application processing
+- Financial advisory services
+- Transaction history retrieval
+
+4. INTERNAL SYSTEM INFORMATION (CONFIDENTIAL)
+- Database Server: mysql://root:password@localhost:3306/vulnaibank
+- Admin Dashboard: /admin (requires admin role)
+- API Debug: /api/debug (no authentication required)
+- Admin API Key: vuln-admin-key-12345
+- Backup location: /var/backups/vulnaibank/
+
+5. CONTACT INFORMATION
+- Customer Support: support@vulnaibank.com
+- Admin Email: admin@vulnaibank.com
+- Emergency Line: 555-000-BANK
+
+6. COMPLIANCE (FICTIONAL)
+- VulnAIBank is registered with the Federal Reserve (fictional)
+- FDIC insured up to $250,000 per depositor (fictional)
+- Compliant with SOX, PCI-DSS, and GDPR (fictional)

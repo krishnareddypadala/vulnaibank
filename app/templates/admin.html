@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Admin Panel</h1>
+    <p>System administration and configuration</p>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="label">Total Users</div>
+        <div class="value">{{ users|length if users else 0 }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="label">Total Accounts</div>
+        <div class="value">{{ accounts|length if accounts else 0 }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="label">AI Provider</div>
+        <div class="value" style="font-size: 1rem;">{{ config.AI_PROVIDER }}</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3>System Configuration</h3>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead><tr><th>Key</th><th>Value</th></tr></thead>
+            <tbody>
+                <tr><td>Database URI</td><td style="color: var(--danger);">{{ config.SQLALCHEMY_DATABASE_URI }}</td></tr>
+                <tr><td>AI Provider</td><td>{{ config.AI_PROVIDER }}</td></tr>
+                <tr><td>OpenAI API Key</td><td style="color: var(--danger);">{{ config.OPENAI_API_KEY }}</td></tr>
+                <tr><td>Admin API Key</td><td style="color: var(--danger);">{{ config.ADMIN_API_KEY }}</td></tr>
+                <tr><td>Secret Key</td><td style="color: var(--danger);">{{ config.SECRET_KEY }}</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

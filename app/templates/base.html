@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VulnAIBank - {% block title %}Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+    <nav class="sidebar">
+        <div class="sidebar-brand">
+            <h2>VulnAIBank</h2>
+            <div class="subtitle">AI-Powered Banking</div>
+        </div>
+
+        <div class="sidebar-nav">
+            <div class="nav-section">Main</div>
+            <a class="nav-link {% if request.path == '/dashboard' %}active{% endif %}" href="/dashboard">
+                <span class="icon">&#9776;</span> Dashboard
+            </a>
+            <a class="nav-link {% if '/chat' in request.path %}active{% endif %}" href="/chat">
+                <span class="icon">&#128172;</span> AI Chat
+                <span class="vuln-tag">LLM01+07</span>
+            </a>
+
+            <div class="nav-section">Banking</div>
+            <a class="nav-link {% if '/accounts' in request.path %}active{% endif %}" href="/accounts">
+                <span class="icon">&#128179;</span> Accounts
+                <span class="vuln-tag">LLM02</span>
+            </a>
+            <a class="nav-link {% if '/transfers' in request.path %}active{% endif %}" href="/transfers">
+                <span class="icon">&#8644;</span> Transfers
+                <span class="vuln-tag">LLM06</span>
+            </a>
+            <a class="nav-link {% if '/loans' in request.path %}active{% endif %}" href="/loans">
+                <span class="icon">&#128176;</span> Loans
+                <span class="vuln-tag">LLM09</span>
+            </a>
+
+            <div class="nav-section">AI Management</div>
+            <a class="nav-link {% if '/documents' in request.path %}active{% endif %}" href="/documents">
+                <span class="icon">&#128196;</span> Documents
+                <span class="vuln-tag">LLM03+08</span>
+            </a>
+            <a class="nav-link {% if '/feedback' in request.path %}active{% endif %}" href="/feedback">
+                <span class="icon">&#11088;</span> Feedback
+                <span class="vuln-tag">LLM04</span>
+            </a>
+            <a class="nav-link {% if '/reports' in request.path %}active{% endif %}" href="/reports">
+                <span class="icon">&#128202;</span> Reports
+                <span class="vuln-tag">LLM05</span>
+            </a>
+
+            <div class="nav-section">System</div>
+            <a class="nav-link" href="/api/debug" target="_blank">
+                <span class="icon">&#128270;</span> Debug API
+                <span class="vuln-tag">LLM07+10</span>
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <span class="username">{{ current_user.username }}</span>
+                <span class="role-badge {% if current_user.role == 'admin' %}admin{% endif %}">
+                    {{ current_user.role }}
+                </span>
+            </div>
+            <a href="/logout" style="color: var(--text-muted); font-size: 0.8rem; text-decoration: none; display: block; margin-top: 0.5rem;">Logout</a>
+        </div>
+    </nav>
+    {% endif %}
+
+    <div class="{% if current_user.is_authenticated %}main-content{% endif %}">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
